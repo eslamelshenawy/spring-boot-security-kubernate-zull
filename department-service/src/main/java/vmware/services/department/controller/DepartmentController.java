@@ -10,6 +10,7 @@ import vmware.services.department.repository.DepartmentRepository;
 import java.util.List;
 
 @RestController
+@RequestMapping("/department")
 public class DepartmentController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);

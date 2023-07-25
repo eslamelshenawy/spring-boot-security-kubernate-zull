@@ -4,7 +4,7 @@
 
 export NAMESPACE_GATEWAY=gateway
 export NAMESPACE_ORGANIZATION=organization
-export NAMESPACE_ORGANIZATION=department
+export NAMESPACE_DEPARTMENT=department
 export NAMESPACE_USER=user
 export NAMESPACE_MONGO=mongo
 
