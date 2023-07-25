@@ -2,7 +2,7 @@
 ### Clone repository
 
 ```bash
-git clone 
+git clone git@github.com:eslamelshenawy/spring-boot-security-kubernate-zuul.git
 ```
 ## minikube start 
 ```bash
