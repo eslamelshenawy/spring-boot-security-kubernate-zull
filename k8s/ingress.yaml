@@ -21,6 +21,13 @@ spec:
             port:
               number: 8080
         pathType: Prefix
+      - path: /department
+        backend:
+          service:
+            name: department
+            port:
+              number: 8080
+        pathType: Prefix
       - path: /user
         backend:
            service:
