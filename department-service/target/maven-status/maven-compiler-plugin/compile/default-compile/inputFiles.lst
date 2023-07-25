@@ -1,0 +1,5 @@
+/home/work/spring-boot-security-kubernate-zull/department-service/src/main/java/vmware/services/department/DepartmentApplication.java
+/home/work/spring-boot-security-kubernate-zull/department-service/src/main/java/vmware/services/department/config/RibbonConfiguration.java
+/home/work/spring-boot-security-kubernate-zull/department-service/src/main/java/vmware/services/department/repository/DepartmentRepository.java
+/home/work/spring-boot-security-kubernate-zull/department-service/src/main/java/vmware/services/department/controller/DepartmentController.java
+/home/work/spring-boot-security-kubernate-zull/department-service/src/main/java/vmware/services/department/model/Department.java

@@ -1,0 +1,5 @@
+vmware/services/department/DepartmentApplication.class
+vmware/services/department/model/Department.class
+vmware/services/department/repository/DepartmentRepository.class
+vmware/services/department/controller/DepartmentController.class
+vmware/services/department/config/RibbonConfiguration.class
