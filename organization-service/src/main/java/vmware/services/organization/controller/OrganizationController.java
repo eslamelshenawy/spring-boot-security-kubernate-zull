@@ -1,36 +1,34 @@
 package vmware.services.organization.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vmware.services.organization.model.Organization;
-import vmware.services.organization.repository.OrganizationRepository;
+import vmware.services.organization.entity.Organization;
+import vmware.services.organization.response.Response;
+import vmware.services.organization.service.OrganizationService;
 
+import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/organization")
 public class OrganizationController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(OrganizationController.class);
-	
 	@Autowired
-	OrganizationRepository repository;
-	@PostMapping
-	public Organization add(@RequestBody Organization organization) {
-		LOGGER.info("Organization add: {}", organization);
-		return repository.save(organization);
+	OrganizationService organizationService;
+	@PostMapping("/add")
+	public ResponseEntity<Response<Boolean>> addOrganization(@Valid  @RequestBody Organization organization) {
+		return organizationService.addOrganization(organization);
 	}
 	
 	@GetMapping
-	public Iterable<Organization> findAll() {
-		LOGGER.info("Organization find");
-		return repository.findAll();
+	public ResponseEntity<Response<List<Organization>>> findAll() {
+		return organizationService.getAllOrganization();
 	}
 	
 	@GetMapping("/{id}")
-	public Organization findById(@PathVariable("id") String id) {
-		LOGGER.info("Organization find: id={}", id);
-		return repository.findById(id).get();
+	public ResponseEntity<Response<Optional<Organization>>> findById(@PathVariable("id") String id) {
+		return organizationService.getOrganizationById(id);
 	}
 }
