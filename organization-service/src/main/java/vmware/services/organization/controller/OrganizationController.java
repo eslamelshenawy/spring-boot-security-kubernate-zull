@@ -21,8 +21,8 @@ public class OrganizationController {
 	public ResponseEntity<Response<Boolean>> addOrganization(@Valid  @RequestBody Organization organization) {
 		return organizationService.addOrganization(organization);
 	}
-	
-	@GetMapping
+
+	@GetMapping("/all")
 	public ResponseEntity<Response<List<Organization>>> findAll() {
 		return organizationService.getAllOrganization();
 	}

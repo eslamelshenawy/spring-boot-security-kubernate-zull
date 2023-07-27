@@ -42,11 +42,11 @@ public class OrganizationApplication {
 				.apiInfo(new ApiInfoBuilder().version("1.0").title("Organization API").description("Documentation Organization API v1.0").build());
 	}
 
-	@Bean
-	MeterRegistryCustomizer meterRegistryCustomizer(MeterRegistry meterRegistry){
-		return registry -> {
-			meterRegistry.config()
-					.commonTags("application", "organization");
-		};
-	}
+//	@Bean
+//	MeterRegistryCustomizer meterRegistryCustomizer(MeterRegistry meterRegistry){
+//		return registry -> {
+//			meterRegistry.config()
+//					.commonTags("application", "organization");
+//		};
+//	}
 }

@@ -18,4 +18,7 @@ public final class EntityConstants {
                     "(0{1}[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]):?" + // MM
                     "(0{1}[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])?.?[\\d]*" + // SS.MMMM
                     "Z?(\\[UTC\\])?$"; // Z[UTC]
+
+    public static final String TOKEN_HEADER = "User-Token";
+
 }

@@ -16,7 +16,6 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @Getter
 @Setter
-
 @Document(collection = "organization")
 public class Organization {
 	@Id
@@ -26,4 +25,5 @@ public class Organization {
 	private String name;
 	@NotBlank(message = Constant.NOT_BLANK + "  .. address")
 	private String address;
+
 }
