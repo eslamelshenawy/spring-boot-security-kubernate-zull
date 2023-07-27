@@ -17,6 +17,7 @@ import vmware.services.organization.response.Response;
 
 import java.util.List;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpStatus.OK;
@@ -37,6 +38,8 @@ public class OrganizationControllerTests extends AbstractTestWithTempBaseDir{
                         null,
                         new ParameterizedTypeReference<Response<List<Organization>>>(){});
         assertEquals(HttpStatus.OK, res.getStatusCode());
+        assertTrue( res.getBody().getData().size() > 0 );
+
     }
 
 }
