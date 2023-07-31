@@ -3,9 +3,8 @@ package vmware.services.gateway.service;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
-import vmware.services.gateway.model.UserPrincipal;
+import vmware.services.gateway.config.auth.UserPrincipal;
 
 import java.io.Serializable;
 import java.util.Date;

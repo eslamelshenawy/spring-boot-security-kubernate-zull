@@ -4,7 +4,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import vmware.services.gateway.entity.User;
-import vmware.services.gateway.model.UserPrincipal;
+import vmware.services.gateway.config.auth.UserPrincipal;
 import vmware.services.gateway.repository.UserRepository;
 
 @Component

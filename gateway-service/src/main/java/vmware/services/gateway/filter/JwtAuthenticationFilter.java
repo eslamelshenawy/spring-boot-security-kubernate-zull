@@ -6,7 +6,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-import vmware.services.gateway.model.UserPrincipal;
+import vmware.services.gateway.config.auth.UserPrincipal;
 import vmware.services.gateway.service.JWTTokenProvider;
 import vmware.services.gateway.service.UserAuthDetailsService;
 
