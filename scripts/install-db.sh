@@ -13,4 +13,8 @@ kubectl apply -n $NAMESPACE_MONGO -f mongodb-configmap.yaml
 kubectl apply -n $NAMESPACE_MONGO -f mongodb-secret.yaml
 kubectl apply -n $NAMESPACE_MONGO -f mongodb-deployment.yaml
 
+kubectl apply -n $NAMESPACE_MYSQL -f mysql-configmap.yaml
+kubectl apply -n $NAMESPACE_MYSQL -f mysql-secret.yaml
+kubectl apply -n $NAMESPACE_MYSQL -f mysql-deployment.yaml
+
 cd ../scripts

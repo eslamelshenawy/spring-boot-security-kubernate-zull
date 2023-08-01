@@ -13,8 +13,4 @@ public class Response<T> implements Serializable {
     private T data;
     private int ResponseCode;
     private String ResponseMessage;
-
-    public ResponseEntity<Response<Boolean>> as() {
-        return this.as();
-    }
 }

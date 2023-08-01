@@ -18,6 +18,7 @@ kubectl delete serviceaccount $SA_NAME -n $NAMESPACE_GATEWAY
 kubectl delete serviceaccount $SA_NAME -n $NAMESPACE_ORGANIZATION
 kubectl delete serviceaccount $SA_NAME -n $NAMESPACE_USER
 kubectl delete serviceaccount $SA_NAME -n $NAMESPACE_MONGO
+kubectl delete serviceaccount $SA_NAME -n $NAMESPACE_MYSQL
 
 kubectl delete clusterrole microservices-kubernetes-namespace-reader
 
@@ -25,3 +26,4 @@ kubectl delete namespace $NAMESPACE_GATEWAY
 kubectl delete namespace $NAMESPACE_ORGANIZATION
 kubectl delete namespace $NAMESPACE_USER
 kubectl delete namespace $NAMESPACE_MONGO
+kubectl delete namespace $NAMESPACE_MYSQL

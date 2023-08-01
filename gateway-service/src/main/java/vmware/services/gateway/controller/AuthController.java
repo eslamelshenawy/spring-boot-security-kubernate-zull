@@ -2,7 +2,6 @@ package vmware.services.gateway.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,13 +10,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import vmware.services.gateway.dto.SignupRequest;
-import vmware.services.gateway.dto.UserDto;
 import vmware.services.gateway.config.auth.AuthenticateRequest;
 import vmware.services.gateway.config.auth.JwtAuthenticationResponse;
 import vmware.services.gateway.config.auth.UserPrincipal;
+import vmware.services.gateway.entity.User;
+import vmware.services.gateway.response.Response;
 import vmware.services.gateway.service.JWTTokenProvider;
 import vmware.services.gateway.service.UserService;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/authenticate")
@@ -42,16 +43,9 @@ public class AuthController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }
 
-
     @PostMapping({"/sign-up"})
-    public ResponseEntity<?> signupUser(@RequestBody SignupRequest signupRequest) throws Exception {
-
-
-        UserDto createdUser = userService.createUser(signupRequest);
-        if (createdUser == null)
-            return new ResponseEntity<>("User not created, come again later", HttpStatus.NOT_ACCEPTABLE);
-
-        return new ResponseEntity<>(createdUser, HttpStatus.OK);
+    public ResponseEntity<Response<User>>  signupUser(@Valid @RequestBody User user) {
+        return userService.addUser(user);
     }
 
 

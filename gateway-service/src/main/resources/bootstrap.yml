@@ -1,4 +1,7 @@
 spring:
+  data:
+    mongodb:
+      auto-index-creation: true
   application:
     name: gateway
   cloud:
@@ -42,3 +45,4 @@ openapi:
     title: "@project.name@"
     version: "@project.version@"
     description: "@project.description@"
+

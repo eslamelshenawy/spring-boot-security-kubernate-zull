@@ -1,11 +1,28 @@
 package vmware.services.gateway.service;
 
-import vmware.services.gateway.dto.SignupRequest;
-import vmware.services.gateway.dto.UserDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import vmware.services.gateway.entity.User;
+import vmware.services.gateway.exceptions.RuntimeBusinessException;
+import vmware.services.gateway.repository.UserRepository;
+import vmware.services.gateway.response.Response;
 
-public interface UserService {
-    UserDto createUser(SignupRequest signupRequest) throws Exception;
+@Service
+@RequiredArgsConstructor
+@Transactional(rollbackFor = {RuntimeBusinessException.class, Exception.class})
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
 
-    Boolean hasUserWithEmail(String email);
+    public ResponseEntity<Response<User>> addUser(User input) {
+            input.setPassword(new BCryptPasswordEncoder().encode(input.getPassword()));
+            User user=userRepository.save(input);
+            Response<User> response = Response.<User>builder().ResponseMessage("success add User").data(user).ResponseCode(200).build();
+            return ResponseEntity.ok(response);
+    }
 
 }

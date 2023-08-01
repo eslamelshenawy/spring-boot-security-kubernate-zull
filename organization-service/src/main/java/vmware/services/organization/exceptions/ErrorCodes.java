@@ -4,10 +4,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
+@Getter
 public enum ErrorCodes {
-	org$0001("No Organization found with Id !");
+	org$0001("No Organization found with Id !"),
 
-	@Getter
+	U$0001("this email used  !")
+	;
+
 	@JsonValue
     private final String value;
 	
