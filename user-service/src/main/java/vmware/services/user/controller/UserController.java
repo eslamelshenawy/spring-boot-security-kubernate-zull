@@ -8,27 +8,28 @@ import vmware.services.user.model.User;
 import vmware.services.user.repository.UserRepository;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	UserRepository repository;
-	@PostMapping
-	public User add(@RequestBody User organization) {
-		LOGGER.info("Organization add: {}", organization);
-		return repository.save(organization);
+	@PostMapping("/add")
+	public User add(@RequestBody User user) {
+		LOGGER.info("user add: {}", user);
+		return repository.save(user);
 	}
 	
-	@GetMapping
+	@GetMapping("/")
 	public Iterable<User> findAll() {
-		LOGGER.info("Organization find");
+		LOGGER.info("user find");
 		return repository.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public User findById(@PathVariable("id") String id) {
-		LOGGER.info("Organization find: id={}", id);
+	public User findById(@PathVariable("id") Long id) {
+		LOGGER.info("user find: id={}", id);
 		return repository.findById(id).get();
 	}
 }

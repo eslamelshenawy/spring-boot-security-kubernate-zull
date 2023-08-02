@@ -1,4 +1,18 @@
 spring:
+  datasource:
+    url: jdbc:mysql://mysql:3306/admin
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.MySQLDialect
+    database-platform: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
+#    generate-ddl: true
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+
   application:
     name: user
   cloud:
@@ -6,9 +20,9 @@ spring:
       config:
         enableApi: true
         paths:
-          - /vault/secrets/mysql.properties
+          - /etc/mysql/configmap
       secrets:
         enabled: true
         paths:
-          - /etc/secretspot
-        enableApi: false
+          - /etc/mysql/secret
+        enableApi: true
