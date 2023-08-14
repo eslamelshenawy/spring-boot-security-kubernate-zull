@@ -15,20 +15,20 @@ public class UserController {
 	@Autowired
 	UserRepository repository;
 	@PostMapping
-	public User add(@RequestBody User organization) {
-		LOGGER.info("Organization add: {}", organization);
-		return repository.save(organization);
+	public User add(@RequestBody User user) {
+		LOGGER.info("Organization add: {}", user);
+		return repository.save(user);
 	}
 	
 	@GetMapping
 	public Iterable<User> findAll() {
-		LOGGER.info("Organization find");
+		LOGGER.info("user find");
 		return repository.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public User findById(@PathVariable("id") String id) {
-		LOGGER.info("Organization find: id={}", id);
+	public User findById(@PathVariable("id") Long id) {
+		LOGGER.info("user find: id={}", id);
 		return repository.findById(id).get();
 	}
 }
