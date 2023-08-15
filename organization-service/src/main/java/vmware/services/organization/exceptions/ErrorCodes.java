@@ -6,16 +6,14 @@ import lombok.Getter;
 
 @Getter
 public enum ErrorCodes {
-	org$0001("No Organization found with Id !"),
+    org$0001("No Organization found with Id !"),
+    U$0001("this email used  !");
 
-	U$0001("this email used  !")
-	;
-
-	@JsonValue
+    @JsonValue
     private final String value;
-	
-	@JsonCreator
-	ErrorCodes(String value) {
+
+    @JsonCreator
+    ErrorCodes(String value) {
         this.value = value;
     }
 }

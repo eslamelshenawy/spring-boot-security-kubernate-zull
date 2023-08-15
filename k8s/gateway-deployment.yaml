@@ -2,13 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gateway
-  labels:
-    app: gateway
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: gateway
+  replicas: 1
   template:
     metadata:
       labels:
@@ -19,33 +17,44 @@ spec:
           image: vmware/gateway:1.1
           ports:
             - containerPort: 8080
-          resources:
-            requests:
-              cpu: "0.2"
-              memory: 300Mi
-            limits:
-              cpu: "1.0"
-              memory: 300Mi
-          volumeMounts:
-            - name: mongodb
-              mountPath: /etc/secretspot
-      volumes:
-        - name: mongodb
-          secret:
-            secretName: gateway
-      serviceAccountName: api-service-account
+          env:   # Setting Enviornmental Variables
+            - name: DB_HOST   # Setting Database host address from configMap
+              valueFrom :
+                configMapKeyRef :
+                  name : db-config
+                  key :  host
+
+            - name: DB_NAME  # Setting Database name from configMap
+              valueFrom :
+                configMapKeyRef :
+                  name : db-config
+                  key :  dbName
+
+            - name: DB_USERNAME  # Setting Database username from Secret
+              valueFrom :
+                secretKeyRef :
+                  name : mysql-secrets
+                  key :  username
+
+            - name: DB_PASSWORD # Setting Database password from Secret
+              valueFrom :
+                secretKeyRef :
+                  name : mysql-secrets
+                  key :  password
+#      serviceAccountName: api-service-account
+
 ---
-apiVersion: v1
-kind: Service
-metadata:
+
+apiVersion: v1 # Kubernetes API version
+kind: Service # Kubernetes resource kind we are creating
+metadata: # Metadata of the resource kind we are creating
   name: gateway
-  labels:
-    app: gateway
 spec:
-  ports:
-    - port: 8080
-      protocol: TCP
-      targetPort: 8080
   selector:
     app: gateway
-  type: LoadBalancer
+  ports:
+    - protocol: "TCP"
+      port: 8080 # The port that the service is running on in the cluster
+      targetPort: 8080 # The port exposed by the service
+  type: LoadBalancer # type of the service.
+

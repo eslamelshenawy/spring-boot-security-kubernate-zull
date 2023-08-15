@@ -2,70 +2,59 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: organization
-  labels:
-    app: organization
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: organization
+  replicas: 1
   template:
     metadata:
       labels:
         app: organization
     spec:
       containers:
-      - name: organization
-        image: vmware/organization:1.1
-        ports:
-          - containerPort: 8080
-        resources:
-          requests:
-            cpu: "0.2"
-            memory: 300Mi
-          limits:
-            cpu: "1.0"
-            memory: 300Mi
-        readinessProbe:
-          httpGet:
-            port: 8080
-            path: /actuator/health
-          initialDelaySeconds: 60
-          timeoutSeconds: 2
-          periodSeconds: 20
-          failureThreshold: 5
-        livenessProbe:
-          httpGet:
-            port: 8080
-            path: /actuator/info
-          initialDelaySeconds: 60
-          timeoutSeconds: 2
-          periodSeconds: 20
-          failureThreshold: 5
-        volumeMounts:
-          - name: mongodb
-            mountPath: /etc/secretspot
-#          - name: config
-#            mountPath: /etc/appconfig
-      volumes:
-        - name: mongodb
-          secret:
-            secretName: organization
-#        - name: config
-#          configMap:
-#            name: organization
-      serviceAccountName: api-service-account
+        - name: user
+          image: vmware/organization:1.1
+          ports:
+            - containerPort: 8080
+          env:   # Setting Enviornmental Variables
+            - name: DB_HOST   # Setting Database host address from configMap
+              valueFrom :
+                configMapKeyRef :
+                  name : db-config
+                  key :  host
+
+            - name: DB_NAME  # Setting Database name from configMap
+              valueFrom :
+                configMapKeyRef :
+                  name : db-config
+                  key :  dbName
+
+            - name: DB_USERNAME  # Setting Database username from Secret
+              valueFrom :
+                secretKeyRef :
+                  name : mysql-secrets
+                  key :  username
+
+            - name: DB_PASSWORD # Setting Database password from Secret
+              valueFrom :
+                secretKeyRef :
+                  name : mysql-secrets
+                  key :  password
+#      serviceAccountName: api-service-account
+
 ---
-apiVersion: v1
-kind: Service
-metadata:
+
+apiVersion: v1 # Kubernetes API version
+kind: Service # Kubernetes resource kind we are creating
+metadata: # Metadata of the resource kind we are creating
   name: organization
-  labels:
-    app: organization
 spec:
-  ports:
-  - port: 8080
-    protocol: TCP
   selector:
     app: organization
-  type: NodePort
+  ports:
+    - protocol: "TCP"
+      port: 8080 # The port that the service is running on in the cluster
+      targetPort: 8080 # The port exposed by the service
+  type: NodePort # type of the service.
+

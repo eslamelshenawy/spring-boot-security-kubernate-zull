@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/organization")
 public class OrganizationController {
 
 	@Autowired
@@ -28,7 +27,7 @@ public class OrganizationController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Response<Optional<Organization>>> findById(@PathVariable("id") String id) {
+	public ResponseEntity<Response<Optional<Organization>>> findById(@PathVariable("id") Long id) {
 		return organizationService.getOrganizationById(id);
 	}
 }

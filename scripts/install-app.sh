@@ -11,19 +11,11 @@ set -x
 cd ../k8s
 
 kubectl config use-context $CLUSTER1_NAME
-kubectl apply -n $NAMESPACE_ORGANIZATION -f organization-configmap.yaml
-kubectl apply -n $NAMESPACE_ORGANIZATION -f organization-secret.yaml
-kubectl apply -n $NAMESPACE_ORGANIZATION -f organization-deployment.yaml
 
-#kubectl apply -n $NAMESPACE_USER -f user-configmap.yaml
-#kubectl apply -n $NAMESPACE_USER -f user-secret.yaml
-#kubectl apply -n $NAMESPACE_USER -f user-deployment.yaml
-kubectl apply -f user-deployment.yaml
-
-kubectl apply -n $NAMESPACE_GATEWAY -f gateway-configmap.yaml
-kubectl apply -n $NAMESPACE_GATEWAY -f gateway-secret.yaml
-kubectl apply -n $NAMESPACE_GATEWAY -f gateway-deployment.yaml
-kubectl apply -n $NAMESPACE_GATEWAY -f ingress.yaml
+kubectl apply  -f organization-deployment.yaml
+kubectl apply  -f user-deployment.yaml
+kubectl apply  -f gateway-deployment.yaml
+kubectl apply  -f ingress.yaml
 
 # set Minikupe IP for microservices-cluster.info in /etc/hosts
 minikube profile $CLUSTER1_NAME

@@ -8,7 +8,8 @@ import lombok.Getter;
 public enum ErrorCodes {
 	org$0001("No Organization found with Id !"),
 
-	U$0001("this email used  !");
+	U$0001("this email used  !"),
+	U$0002("Email already exists" );
 
 	@JsonValue
     private final String value;

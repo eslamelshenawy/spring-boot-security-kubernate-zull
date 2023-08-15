@@ -13,6 +13,7 @@ import javax.persistence.*;
 public class User {
 
     @Id
+    @Column(name = "id", nullable = false, columnDefinition = "BIGINT AUTO_INCREMENT")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;

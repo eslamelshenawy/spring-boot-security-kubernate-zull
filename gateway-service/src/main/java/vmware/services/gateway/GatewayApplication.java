@@ -28,7 +28,6 @@ import java.util.stream.Stream;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableZuulProxy
-@EnableSwagger2
 @AutoConfigureAfter(RibbonAutoConfiguration.class)
 @RibbonClients(defaultConfiguration = RibbonConfiguration.class)
 public class GatewayApplication {

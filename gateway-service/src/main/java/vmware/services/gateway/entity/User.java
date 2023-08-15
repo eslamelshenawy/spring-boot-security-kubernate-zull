@@ -4,26 +4,24 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.index.Indexed;
 import vmware.services.gateway.dto.UserDto;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Document(collection = "users")
+@Table(name = "users")
+@Entity
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @Column(name = "id", nullable = false, columnDefinition = "BIGINT AUTO_INCREMENT")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String name;
-    @Indexed(unique=true)
+    @Column(unique=true)
     private String email;
     private String password;
     private String role;

@@ -36,7 +36,7 @@ public class OrganizationService {
         return ResponseEntity.ok(response);
     }
 
-    public ResponseEntity<Response<Optional<Organization>>> getOrganizationById(String orgId) {
+    public ResponseEntity<Response<Optional<Organization>>> getOrganizationById(Long orgId) {
 
         Optional<Organization> organization = Optional.ofNullable(organizationRepository.findById(orgId)
                 .orElseThrow(() -> new RuntimeBusinessException(NOT_ACCEPTABLE, org$0001, orgId)));

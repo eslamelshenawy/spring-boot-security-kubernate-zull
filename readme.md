@@ -4,10 +4,6 @@
 ```bash
 git clone git@github.com:eslamelshenawy/spring-boot-security-kubernate-zuul.git
 ```
-## minikube start 
-```bash
-minikube start
-```
 ### Start Kubernetes cluster
 
 ```bash
@@ -28,43 +24,15 @@ cd ./scripts/
 cd ./scripts/
 ./install-all.sh
 ```
-
-### Polulate test data
-
-```bash
-cd ./scripts/
-./populate-data.sh
-```
 ## minikube dashboard
 ```bash
 minikube dashboard
 ```
-### Observe service logs
-
-```bash
-cd ./scripts/
-./user-log.sh
-```
-
-### Open Swagger UI web interface
-
-```bash
-cd ./scripts/
-./gateway-open.sh
-```
-
 ### Undeploy application from Kubernetes cluster
 
 ```bash
 cd ./scripts/
 ./delete-all.sh
-```
-
-### Delete Application specific Kubernetes cluster configuration (namespaces, clusterRole, etc.)
-
-```bash
-cd ./scripts/
-./destroy-cluster.sh
 ```
 
 ### Stop Kubernetes cluster
@@ -73,6 +41,7 @@ cd ./scripts/
 cd ./scripts/
 ./stop-cluster.sh
 ```
+
 ```bash
  sudo chmod 777 -R  scripts
 ```
@@ -127,7 +96,6 @@ kubectl create namespace
 ```bash to collect the logs from the pod
 kubectl logs <pod_name> -n <namespace_name>
 ```
-```bash output the logs to a file
-kubectl logs <pod_name> -n <namespace_name> > broken-pod.log
+
 ```
 

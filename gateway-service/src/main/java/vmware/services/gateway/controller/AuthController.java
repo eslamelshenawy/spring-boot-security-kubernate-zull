@@ -14,6 +14,7 @@ import vmware.services.gateway.config.auth.AuthenticateRequest;
 import vmware.services.gateway.config.auth.JwtAuthenticationResponse;
 import vmware.services.gateway.config.auth.UserPrincipal;
 import vmware.services.gateway.entity.User;
+import vmware.services.gateway.exceptions.RuntimeBusinessException;
 import vmware.services.gateway.response.Response;
 import vmware.services.gateway.service.JWTTokenProvider;
 import vmware.services.gateway.service.UserService;
@@ -45,7 +46,11 @@ public class AuthController {
 
     @PostMapping({"/sign-up"})
     public ResponseEntity<Response<User>>  signupUser(@Valid @RequestBody User user) {
-        return userService.addUser(user);
+        try {
+            return userService.addUser(user);
+        } catch (RuntimeBusinessException e) {
+            return ResponseEntity.badRequest().body(Response.<User>builder().ResponseMessage(e.getMessage()).build());
+        }
     }
 
 
